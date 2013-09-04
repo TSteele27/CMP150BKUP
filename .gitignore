@@ -1,0 +1,8 @@
+*.csproj
+*.sln
+*.unityproj
+*.meta
+*.suo
+Class1/Library/*
+Class1/Temp/*
+Class1/obj/*
