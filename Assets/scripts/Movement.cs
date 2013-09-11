@@ -6,11 +6,11 @@ using System;
 [Serializable]
 public class CharacterControls
 {
-    public KeyCode MoveForward = KeyCode.W;
-    public KeyCode MoveRight = KeyCode.D;
-    public KeyCode MoveLeft = KeyCode.A;
-    public KeyCode MoveUp = KeyCode.Space;
-    public KeyCode MoveBack = KeyCode.S;
+    public Control MoveForward;
+    public Control MoveRight;
+    public Control MoveLeft;
+    public Control MoveUp;
+    public Control MoveBack;
 }
 
 public class MyDerivedMono : MonoBehaviour
@@ -25,8 +25,9 @@ public class MyDerivedMono : MonoBehaviour
         }
     }
 }
-public class Movement : MyDerivedMono
-{
+public class Movement : MyDerivedMono {
+    public Control ControllerInput;
+
 
     public float MoveSpeed = 5f;
 
@@ -47,30 +48,31 @@ public class Movement : MyDerivedMono
 	// Update is called once per frame
 	void Update ()
     {
-        XPos = 100f;
-        if (Input.GetKey(controls.MoveForward))
+        
+        if (controls.MoveForward.IsActive)
         {
             transform.Translate(transform.forward * (MoveSpeed * Time.deltaTime));
 
         }
-        if (Input.GetKey(controls.MoveUp))
+        if (controls.MoveUp.IsActive)
         {
-            transform.Translate(transform.up * (MoveSpeed * Time.deltaTime));
+          
         }
-
-        if (Input.GetKey(controls.MoveRight))
+        
+        if (controls.MoveRight.IsActive)
         {
             transform.Translate(transform.right * (MoveSpeed * Time.deltaTime));
         }
 
-        if (Input.GetKey(controls.MoveLeft))
+        if (controls.MoveLeft.IsActive)
         {
             transform.Translate(-1 * transform.right * (MoveSpeed * Time.deltaTime));
         }
-        if (Input.GetKey(controls.MoveBack))
+        if (controls.MoveBack.IsActive)
         {
             transform.Translate(-1 * transform.forward * (MoveSpeed * Time.deltaTime));
         }
+
 	
 	}
 }
